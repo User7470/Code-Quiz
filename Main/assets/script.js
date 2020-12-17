@@ -28,10 +28,18 @@ var choice3 = document.createElement("button")
 var choice4 = document.createElement("button")
 
 var timeLeft = 100
-
 function startQuiz() {
 startScreen.style.display = "none"
 questions.style.display = "block"
+var timerH = setInterval(function() {
+    timeLeft--
+    time.textContent = timeLeft
+    if (timeLeft === 0) {
+        endQuiz() 
+    }
+}, 1000)
+
+//question/answers 1
 questionTitle.textContent = "What is the"
 choice1.innerHTML = "Answer"
 choice2.innerHTML = "Answer"
@@ -43,103 +51,158 @@ choices.appendChild(choice3)
 choices.appendChild(choice4)
 
 
-choice1.addEventListener("click", function(){nextQuestion1()
-wrongAnswer()})
-choice2.addEventListener("click", function(){nextQuestion1()
-rightAnswer()})
-choice3.addEventListener("click", function(){nextQuestion1()
-wrongAnswer()})
-choice4.addEventListener("click", function(){nextQuestion1()
-wrongAnswer()})
-}
-
-function nextQuestion1() {
-choice1.innerHTML = "Answer2"
-choice2.innerHTML = "Answer2"
-choice3.innerHTML = "Answer2"
-choice4.innerHTML = "Answer2"
-choice1.removeEventListener("click", function(){nextQuestion1()
-wrongAnswer()})
-choice1.addEventListener("click", function(){nextQuestion2()
-rightAnswer()})
-choice2.removeEventListener("click", function(){nextQuestion1()
-rightAnswer()})
-choice2.addEventListener("click", function(){nextQuestion2()
-wrongAnswer()})
-choice3.removeEventListener("click", function(){nextQuestion1()
-wrongAnswer()})
-choice3.addEventListener("click", function(){nextQuestion2()
-wrongAnswer()})
-choice4.removeEventListener("click", function(){nextQuestion1()
-wrongAnswer()})
-choice4.addEventListener("click", function(){nextQuestion2()
+choice1.addEventListener("click", function(){timeRemove()
+nextQuestion1()
 wrongAnswer()
 })
-}
-
-
-function nextQuestion2() {
-choice1.innerHTML = "Answer3"
-choice2.innerHTML = "Answer3"
-choice3.innerHTML = "Answer3"
-choice4.innerHTML = "Answer3"
-choice1.removeEventListener("click", function(){nextQuestion2()
+choice2.addEventListener("click", function(){nextQuestion1()
 rightAnswer()})
-choice1.addEventListener("click", function(){nextQuestion3()
-wrongAnswer()})
-choice2.removeEventListener("click", function(){nextQuestion2()
-wrongAnswer()})
-choice2.addEventListener("click", function(){nextQuestion3()
-wrongAnswer()})
-choice3.removeEventListener("click", function(){nextQuestion2()
-wrongAnswer()})
-choice3.addEventListener("click", function(){nextQuestion3()
-wrongAnswer()})
-choice4.removeEventListener("click", function(){nextQuestion2()
-wrongAnswer()})
-choice4.addEventListener("click", function(){nextQuestion3()
-rightAnswer()
+choice3.addEventListener("click", function(){timeRemove()
+nextQuestion1()
+wrongAnswer()
 })
-}
+choice4.addEventListener("click", function(){timeRemove()
+nextQuestion1()
+wrongAnswer()
+})
+function nextQuestion1() {
+    //question/answers 2
+    questionTitle.textContent = ""
+    choice1.innerHTML = "Answer2"
+    choice2.innerHTML = "Answer2"
+    choice3.innerHTML = "Answer2"
+    choice4.innerHTML = "Answer2"
+    choice1.addEventListener("click", function(){timeUndo()
+    nextQuestion2()
+    rightAnswer()
+    })
+    choice2.addEventListener("click", function(){timeRemove()
+    nextQuestion2()
+    wrongAnswer()})
+    choice3.addEventListener("click", function(){
+    nextQuestion2()
+    wrongAnswer()})
+    choice4.addEventListener("click", function(){nextQuestion2()
+    wrongAnswer()
+    })
+    }
     
-function nextQuestion3() {
-choice1.innerHTML = "Answer4"
-choice2.innerHTML = "Answer4"
-choice3.innerHTML = "Answer4"
-choice4.innerHTML = "Answer4"
-choice1.removeEventListener("click", function(){nextQuestion3()
-wrongAnswer()})
-choice1.addEventListener("click", function(){rightAnswer()
-endQuiz()
-})
-choice2.removeEventListener("click", function(){nextQuestion3()
-wrongAnswer()})
-choice2.addEventListener("click", function(){wrongAnswer()
-endQuiz()
-})
-choice3.removeEventListener("click", function(){nextQuestion3()
-wrongAnswer()})
-choice3.addEventListener("click", function(){wrongAnswer()
-endQuiz()
-})
-choice4.removeEventListener("click", function(){nextQuestion3()
-rightAnswer()})
-choice4.addEventListener("click", function(){wrongAnswer()
-endQuiz()
-
-})
+    
+    function nextQuestion2() {
+    //question/answers 3
+    questionTitle.textContent = ""
+    choice1.innerHTML = "Answer3"
+    choice2.innerHTML = "Answer3"
+    choice3.innerHTML = "Answer3"
+    choice4.innerHTML = "Answer3"
+    choice1.addEventListener("click", function(){timeRemove()
+    timeRemove2()
+    nextQuestion3()
+    wrongAnswer()
+    })
+    choice2.addEventListener("click", function(){timeUndo()
+    nextQuestion3()
+    wrongAnswer()})
+    choice3.addEventListener("click", function(){
+    nextQuestion3()
+    wrongAnswer()})
+    choice4.addEventListener("click", function(){timeUndo()
+    nextQuestion3()
+    rightAnswer()
+    })
+    }
+        
+    function nextQuestion3() {
+    //question/answers 4
+    questionTitle.textContent = ""
+    choice1.innerHTML = "Answer4"
+    choice2.innerHTML = "Answer4"
+    choice3.innerHTML = "Answer4"
+    choice4.innerHTML = "Answer4"
+    choice1.addEventListener("click", function(){timeUndo()
+    timeUndo2()
+    timeUndo3()
+    rightAnswer()
+    nextQuestion4()
+    })
+    choice2.addEventListener("click", function(){timeRemove()
+    wrongAnswer()
+    nextQuestion4()
+    })
+    choice3.addEventListener("click", function(){
+    wrongAnswer()
+    nextQuestion4()
+    })
+    choice4.addEventListener("click", function(){timeRemove4()
+    wrongAnswer()
+    nextQuestion4()
+    })
+    }
+    
+    function nextQuestion4() {
+     //question/answers 5
+    questionTitle.textContent = ""
+    choice1.innerHTML = "Answer5"
+    choice2.innerHTML = "Answer5"
+    choice3.innerHTML = "Answer5"
+    choice4.innerHTML = "Answer5"
+    choice1.addEventListener("click", function(){timeRemove()
+    timeRemove3()
+    wrongAnswer()
+    endQuiz()
+    })
+    choice2.addEventListener("click", function(){timeUndo()
+    wrongAnswer()
+    endQuiz()
+    })
+    choice3.addEventListener("click", function(){timeUndo()
+    rightAnswer()
+    endQuiz()
+    })
+    choice4.addEventListener("click", function(){timeUndo4()
+        wrongAnswer()
+    endQuiz()
+    timerStop()
+    })
+    }
+    function endQuiz() {
+        finalScore.textContent = timeLeft
+        clearInterval(timerH)
+        endScreen.style.display = "block"
+        questions.style.display = "none"
+    }
 }
 
-function endQuiz() {
-finalScore.textContent = timeLeft
-endScreen.style.display = "block"
-questions.style.display = "none"
-}
 
+
+
+function timeRemove() {
+    timeLeft -= 10
+}
+function timeRemove2() {
+    timeLeft -= 10
+}
+function timeRemove3() {
+    timeLeft -= 70
+}
+function timeRemove4() {
+    timeLeft -= 30
+}
+function timeUndo() {
+    timeLeft += 10
+}
+function timeUndo2() {
+    timeLeft += 10
+}
+function timeUndo3() {
+    timeLeft += 20
+}
+function timeUndo4() {
+    timeLeft += 60
+}
 function wrongAnswer() {
 feedback.textContent = "incorrect"
 feedback.style.display = "block"
-timeLeft -= 10
 }
 
 function rightAnswer() {
