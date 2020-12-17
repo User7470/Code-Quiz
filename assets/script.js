@@ -1,17 +1,4 @@
-//Call necessary classes/IDs and store them in variables for later use
-
-//Make Start Quiz button hide the main menu elements and show the questions
-
-//Add timer functionality, timer start linked to start quiz button
-
-//Make questions detect right and wrong answers, wrong answers subtract time from the running timer, next question is shown after answer is submitted and user is notified of whether they were or were not correct
-
-//Repeat for like 4 questions
-
-//Quiz ends after all questions are finished or timer becomes 0
-
-//Score is given and will prompt for initials to save the user's scores locally
-
+//scores and initials need to be stored locally upon pressing submit and then they need to display on the highscore page
 var startButton = document.querySelector("#start")
 var startScreen = document.querySelector("#start-screen")
 var time = document.querySelector("#time")
@@ -21,6 +8,8 @@ var choices = document.querySelector("#choices")
 var feedback = document.querySelector("#feedback")
 var endScreen = document.querySelector("#end-screen")
 var finalScore = document.querySelector("#final-score")
+var submitButton = document.querySelector("#submit")
+var initials = document.querySelector("#initials")
 
 var choice1 = document.createElement("button")
 var choice2 = document.createElement("button")
@@ -209,5 +198,16 @@ function rightAnswer() {
     feedback.textContent = "correct"
     feedback.style.display = "block"
 }
-
-startButton.addEventListener("click", function(){startQuiz()});
+function saveScore() {
+    if (initials.value.length <= 3, initials.value.length > 1) {
+        localStorage.setItem("score", finalScore.textContent)
+        localStorage.setItem("Initials", initials.value)
+        location.reload()
+    }
+    else {
+        alert("Please input 2 or 3 initials only")
+    }
+    
+}
+startButton.addEventListener("click", function(){startQuiz()})
+submitButton.addEventListener("click", function(){saveScore()})
