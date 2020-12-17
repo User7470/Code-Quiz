@@ -40,11 +40,11 @@ var timerH = setInterval(function() {
 }, 1000)
 
 //question/answers 1
-questionTitle.textContent = "What is the"
-choice1.innerHTML = "Answer"
-choice2.innerHTML = "Answer"
-choice3.innerHTML = "Answer"
-choice4.innerHTML = "Answer"
+questionTitle.textContent = "Who is the creator of Javascript?"
+choice1.innerHTML = "Will Smith"
+choice2.innerHTML = "Brendan Eich"
+choice3.innerHTML = "Steve Jobs"
+choice4.innerHTML = "Donald Trump"
 choices.appendChild(choice1)
 choices.appendChild(choice2)
 choices.appendChild(choice3)
@@ -67,11 +67,11 @@ wrongAnswer()
 })
 function nextQuestion1() {
     //question/answers 2
-    questionTitle.textContent = ""
-    choice1.innerHTML = "Answer2"
-    choice2.innerHTML = "Answer2"
-    choice3.innerHTML = "Answer2"
-    choice4.innerHTML = "Answer2"
+    questionTitle.textContent = "Commonly used data types DO NOT include:"
+    choice1.innerHTML = "alerts"
+    choice2.innerHTML = "booleans"
+    choice3.innerHTML = "strings"
+    choice4.innerHTML = "numbers"
     choice1.addEventListener("click", function(){timeUndo()
     nextQuestion2()
     rightAnswer()
@@ -90,11 +90,11 @@ function nextQuestion1() {
     
     function nextQuestion2() {
     //question/answers 3
-    questionTitle.textContent = ""
-    choice1.innerHTML = "Answer3"
-    choice2.innerHTML = "Answer3"
-    choice3.innerHTML = "Answer3"
-    choice4.innerHTML = "Answer3"
+    questionTitle.textContent = "Arrays in JavaScript can be used to store _________ "
+    choice1.innerHTML = "numbers and strings"
+    choice2.innerHTML = "other arrays"
+    choice3.innerHTML = "booleans"
+    choice4.innerHTML = "all of the above"
     choice1.addEventListener("click", function(){timeRemove()
     timeRemove2()
     nextQuestion3()
@@ -114,11 +114,11 @@ function nextQuestion1() {
         
     function nextQuestion3() {
     //question/answers 4
-    questionTitle.textContent = ""
-    choice1.innerHTML = "Answer4"
-    choice2.innerHTML = "Answer4"
-    choice3.innerHTML = "Answer4"
-    choice4.innerHTML = "Answer4"
+    questionTitle.textContent = "The condition in an if/else statement is enclosed within ________"
+    choice1.innerHTML = "parentheses"
+    choice2.innerHTML = "curly brackets"
+    choice3.innerHTML = "quotes"
+    choice4.innerHTML = "square brackets"
     choice1.addEventListener("click", function(){timeUndo()
     timeUndo2()
     timeUndo3()
@@ -141,11 +141,11 @@ function nextQuestion1() {
     
     function nextQuestion4() {
      //question/answers 5
-    questionTitle.textContent = ""
-    choice1.innerHTML = "Answer5"
-    choice2.innerHTML = "Answer5"
-    choice3.innerHTML = "Answer5"
-    choice4.innerHTML = "Answer5"
+    questionTitle.textContent = "A very useful tool used during development and debugging for printing content to the debugger is:"
+    choice1.innerHTML = "terminal/bash"
+    choice2.innerHTML = "JavaScript"
+    choice3.innerHTML = "console.log"
+    choice4.innerHTML = "for loops"
     choice1.addEventListener("click", function(){timeRemove()
     timeRemove3()
     wrongAnswer()
@@ -160,13 +160,13 @@ function nextQuestion1() {
     endQuiz()
     })
     choice4.addEventListener("click", function(){timeUndo4()
-        wrongAnswer()
+    wrongAnswer()
     endQuiz()
-    timerStop()
     })
     }
     function endQuiz() {
         finalScore.textContent = timeLeft
+        time.textContent = timeLeft
         clearInterval(timerH)
         endScreen.style.display = "block"
         questions.style.display = "none"
