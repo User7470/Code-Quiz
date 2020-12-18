@@ -199,13 +199,15 @@ function rightAnswer() {
     feedback.style.display = "block"
 }
 function saveScore() {
-    if (initials.value.length <= 3, initials.value.length > 1) {
+    if (initials.value.length <= 3 && initials.value.length > 0) {
         localStorage.setItem("score", finalScore.textContent)
         localStorage.setItem("Initials", initials.value)
         location.reload()
     }
+    else if (initials.value.length === 0)
+        alert("Please input your initials to submit!")
     else {
-        alert("Please input 2 or 3 initials only")
+        alert("Please input no more than 3 initials!")
     }
     
 }
